@@ -23,6 +23,13 @@ int mode(){
     }
 
 }
+
+bool try_again(){
+    cout << "Do you want to try again? (yes/no): ";
+    cin >> again;
+    return (again == "yes");
+}
+
 int main(){
     
     cout << "請輸入有幾個單字";
@@ -64,19 +71,8 @@ int main(){
             answer_list.erase(answer_list.begin() + num1);
             num1 -= 1;
            
-            if(num1 > 0){
-                cout << "要繼續嗎?(yes/no)";
-                cin >> again;
-               
-                if(again == "yes"){
-                    running = true;
-                }
-                else{
-                    running = false;
-                }
-            }
-            else{
-                running = false;
+            if(!(num1 > 0&&try_again())){
+                return 0;
             }
         }
     }
@@ -103,22 +99,8 @@ int main(){
             answer_list.erase(answer_list.begin() + num1);
             num1 -= 1;
            
-            if(num1 > 1){
-                cout << "要繼續嗎?";
-                cin >> again;
-              
-                if(again == "yes"){
-                    running = true;
-
-                }
-                else{
-                    running = false;
-                }
-            
-            
-            }
-            else{
-                running = false;
+            if(!(num1 > 1&&try_again())){
+                return 0;
             }
 
         }
@@ -146,21 +128,10 @@ int main(){
                 incorrect_time ++;
 
             }
-            if(num1 > 1){
-                cout << "要繼續嗎?(yes/no)";
-                cin >> again;
-                if(again == "yes"){
-                    running = true;
-
-                }
-                else{
-                    running = false;
-                }
-
+            if(!(num1 > 1&&try_again())){
+                return 0;
             }
-            else{
-                running = false;
-            }
+            
 
         }
         
