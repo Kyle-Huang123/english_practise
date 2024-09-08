@@ -1,12 +1,10 @@
 #include<bits/stdc++.h>
-#include<string>
-#include<vector>
 using namespace std;
 
 int num1 = 0,num2 = 0,num3 = 0,num4 = 0,mode2 = 0;
 int correct_time = 0,incorrect_time = 0;
 bool running = true;
-vector<vector<string>> answer_list(1,vector<string>(num1));
+vector<vector<string>> answer_list;
 string mode1 = "中翻英",answer = "a",again = "no"; 
 string english_answer, chinese_answer;
 string ans[] = {chinese_answer,english_answer}; 
@@ -26,35 +24,25 @@ int mode(){
 
 }
 int main(){
-
+    
     cout << "請輸入有幾個單字";
     cin >> num1;
-    answer_list.push_back(vector<string>(num1-1));
-    if(num1 == 1){
-        printf("請輸入第1個單字以及單字的中文意思(請用一個空白鍵隔開)");
-        cin >> english_answer >> chinese_answer;
-        answer_list[0].push_back(english_answer);
-        answer_list[0].push_back(chinese_answer);
-    }
-    else{
-        for(int i = 0;i < num1;i++)
-        {
-            for(int j = 0;j < 2;j++){
-                printf("請輸入第%d個單字以及單字的中文意思(請用一個空白鍵隔開)",i+1);
-                cin >> english_answer >> chinese_answer;
-                answer_list[i].push_back(english_answer);
-                answer_list[i].push_back(chinese_answer);
-            }
+    //answer_list.push_back(vector<string>(num1-1));
     
-        }
+    for(int i = 0;i < num1;i++){
+        cout<<"請輸入第"<<i+1<<"個單字(英+空白+中)";
+        cin >> english_answer >> chinese_answer;
+        answer_list.push_back({english_answer,chinese_answer});
+        //answer_list[i].push_back(chinese_answer);
     }
+    
     
     /*cout << num1 << running << '\n';
     cout << answer_list[0][1] << '\n';*/
-    cout << "請選擇模式(中翻英/英翻中/隨機)";
+    cout << "請選擇模式(A,B,C)(中翻英/英翻中/隨機)";
     cin >> mode1;
     srand(time(NULL));
-    if(mode1 == "中翻英"){
+    if(mode1 == "A"||mode1 == "中翻英"){
         while(num1 > 0 && running){
             num2 = rand();
             num2 = num2 % num1;
@@ -92,7 +80,7 @@ int main(){
             }
         }
     }
-    else if(mode1 == "英翻中"){
+    else if(mode1 == "英翻中"||mode1 == "B"){
         while(num1 > 0 && running){
             num2 = rand();
             num2 = num2 % num1;
@@ -136,7 +124,7 @@ int main(){
         }
             
     }
-    else if(mode1 == "隨機"){
+    else if(mode1 == "隨機"||mode1 == "C"){
         while(running && num1 > 1){
             if(mode2 == 0){
                 num4 = 0;
