@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<string>
+#pragma GCC optimize("Ofast")
 
 using namespace std;
 
@@ -35,6 +36,7 @@ void ask(vector<vector<string>> &ans_list,int mod = 0){//mod(模式):0是中翻�
 }
 
 int main(){
+    ios::sync_with_stdio(0);
     srand(time(NULL));//種子設定
     vector<vector<string>> answer_list;
     string english_answer, chinese_answer, mode;//mode是模式
