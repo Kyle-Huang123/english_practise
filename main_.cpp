@@ -7,7 +7,7 @@ using namespace std;
 
 bool try_again(){
     string again;
-    cout << "Do you want to try again? (Y/N): ";
+    cout << "Do you want to keep going? (Y/N): ";
     cin >> again;
     return (again == "Y");
 }
@@ -53,7 +53,7 @@ int main(){
         answer_list.push_back({english_answer,chinese_answer});
     }
 
-    cout << "請選擇模式(A,B,C)(中翻英/英翻中/隨機)";
+    cout << "請選擇模式 (A/B/C)(中翻英/英翻中/隨機)";
     cin >> mode;
     
     do{//開始回答
@@ -67,5 +67,11 @@ int main(){
             int randmode = rand() % 2;
             ask(answer_list,randmode);
         }
+        else{
+            cout << "Invalid mode. Please choose A, B, or C." << endl;
+            cout << "請選擇模式(A,B,C)(中翻英/英翻中/隨機)";
+            cin >> mode;
+        }
     }while(answer_list.size()&&try_again());
+    cout << "GAME OVER! " << endl;
 }
