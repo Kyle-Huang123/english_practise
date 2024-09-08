@@ -67,5 +67,5 @@ int main(){
             int randmode = rand() % 2;
             ask(answer_list,randmode);
         }
-    }while(answer_list.size()&&!(try_again()));
+    }while(answer_list.size()&&try_again());
 }
