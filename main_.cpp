@@ -1,7 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<string>
-#pragma GCC optimize("Ofast")
+#pragma GCC optimize("Ofast")//就想加速一下 O_O
 
 using namespace std;
 
@@ -36,7 +36,7 @@ void ask(vector<vector<string>> &ans_list,int mod = 0){//mod(模式):0是中翻�
 }
 
 int main(){
-    ios::sync_with_stdio(0);
+    ios::sync_with_stdio(0);//關閉stdio
     srand(time(NULL));//種子設定
     vector<vector<string>> answer_list;
     string english_answer, chinese_answer, mode;//mode是模式
