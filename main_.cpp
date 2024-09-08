@@ -5,6 +5,8 @@
 
 using namespace std;
 
+int correct_time = 0;//答對次數
+
 bool try_again(){
     string again;
     cout << "Do you want to keep going? (Y/N): ";
@@ -29,6 +31,7 @@ void ask(vector<vector<string>> &ans_list,int mod = 0){//mod(模式):0是中翻�
     if(answer == a){
         cout << "Correct!" << endl;
         ans_list.erase(ans_list.begin()+r);//刪除已答對的
+        correct_time++;
     }
     else{
         cout << "Incorrect, the correct answer is: " << a << endl;
