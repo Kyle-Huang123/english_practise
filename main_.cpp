@@ -11,8 +11,8 @@ bool try_again(){
     return (again == "Y");
 }
 
-void ask(vector<vector<string>> &ans_list,int mod = 0){
-    string q,a,answer;
+void ask(vector<vector<string>> &ans_list,int mod = 0){//mod(模式):0是中翻英,1是英翻中
+    string q,a,answer;//q是題目,a是答案
     int r = rand() % ans_list.size();
     if(mod){
         q = ans_list[r][0];
@@ -22,12 +22,12 @@ void ask(vector<vector<string>> &ans_list,int mod = 0){
         q = ans_list[r][1];
         a = ans_list[r][0];
     }
-    ans_list.erase(ans_list.begin()+r);
     cout<<"question: "<<q<<endl;
     cout << "Your answer: ";
     cin >> answer;
     if(answer == a){
         cout << "Correct!" << endl;
+        ans_list.erase(ans_list.begin()+r);//刪除已答對的
     }
     else{
         cout << "Incorrect, the correct answer is: " << a << endl;
@@ -35,9 +35,9 @@ void ask(vector<vector<string>> &ans_list,int mod = 0){
 }
 
 int main(){
-    srand(time(NULL));
+    srand(time(NULL));//種子設定
     vector<vector<string>> answer_list;
-    string english_answer, chinese_answer, mode;
+    string english_answer, chinese_answer, mode;//mode是模式
     int num1;
     
     cout << "請輸入有幾個單字";
@@ -45,7 +45,7 @@ int main(){
 
     if(!(num1)) return 0;
     
-    for(int i = 0;i < num1;i++){
+    for(int i = 0;i < num1;i++){//輸入單字
         cout<<"請輸入第"<<i+1<<"個單字(英+空白+中)";
         cin >> english_answer >> chinese_answer;
         answer_list.push_back({english_answer,chinese_answer});
@@ -53,8 +53,8 @@ int main(){
 
     cout << "請選擇模式(A,B,C)(中翻英/英翻中/隨機)";
     cin >> mode;
-
-    do{
+    
+    do{//開始回答
         if(mode == "A"||mode == "中翻英"){
             ask(answer_list);
         }
