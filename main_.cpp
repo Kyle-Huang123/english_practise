@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int correct_time = 0;//答對次數
+int correct_time = 0,ask_time = 0;//答對次數
 
 bool try_again(){
     string again;
@@ -15,6 +15,7 @@ bool try_again(){
 }
 
 void ask(vector<vector<string>> &ans_list,int mod = 0){//mod(模式):0是中翻英,1是英翻中
+    ask_time++;
     string q,a,answer;//q是題目,a是答案
     int r = rand() % ans_list.size();
     if(mod){
@@ -76,5 +77,5 @@ int main(){
             cin >> mode;
         }
     }while(answer_list.size()&&try_again());
-    cout << "GAME OVER! " << endl;
+    cout << "GAME OVER! " << '\n' << '|' << correct_time << '/' << ask_time <<  '|' << '\n';
 }
