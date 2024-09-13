@@ -5,8 +5,6 @@
 
 using namespace std;
 
-int correct_time = 0,ask_time = 0;//答對次數
-
 bool try_again(){
     string again;
     cout << "Do you want to keep going? (Y/N): ";
@@ -14,8 +12,7 @@ bool try_again(){
     return (again == "Y");
 }
 
-void ask(vector<vector<string>> &ans_list,int mod = 0){//mod(模式):0是中翻英,1是英翻中
-    ask_time++;
+int ask(vector<vector<string>> &ans_list,int mod = 0){//mod(模式):0是中翻英,1是英翻中
     string q,a,answer;//q是題目,a是答案
     int r = rand() % ans_list.size();
     if(mod){
@@ -32,14 +29,14 @@ void ask(vector<vector<string>> &ans_list,int mod = 0){//mod(模式):0是中翻�
     if(answer == a){
         cout << "Correct!" << endl;
         ans_list.erase(ans_list.begin()+r);//刪除已答對的
-        correct_time++;
+        return 1;
     }
-    else{
-        cout << "Incorrect, the correct answer is: " << a << endl;
-    }
+    cout << "Incorrect, the correct answer is: " << a << endl;
+    return 0;
 }
 
 int main(){
+    int correct_time = 0,ask_time = 0;//答對次數
     ios::sync_with_stdio(0);//關閉stdio
     srand(time(NULL));//種子設定
     vector<vector<string>> answer_list;
@@ -61,17 +58,19 @@ int main(){
     cin >> mode;
     
     do{//開始回答
+        ask_time++;
         if(mode == "A"||mode == "中翻英"){
-            ask(answer_list);
+            correct_time += ask(answer_list);
         }
         else if(mode == "B"||mode == "英翻中"){
-            ask(answer_list,1);
+            correct_time += ask(answer_list,1);
         }
         else if(mode == "C"||mode == "隨機"){
             int randmode = rand() % 2;
-            ask(answer_list,randmode);
+            correct_time += ask(answer_list,randmode);
         }
         else{
+            ask_time--;
             cout << "Invalid mode. Please choose A, B, or C." << endl;
             cout << "請選擇模式(A,B,C)(中翻英/英翻中/隨機)";
             cin >> mode;
