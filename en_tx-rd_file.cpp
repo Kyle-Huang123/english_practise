@@ -41,9 +41,6 @@ int ask(vector<vector<string>> &ans_list, int mod = 0){
         //ans_list.erase(ans_list.begin() + r);
         return 1;
     }
-    cout << "db*" ;
-    //p_string(answer);
-    //p_string(a);
     cout << "The correct answer is: " << a << endl;
     return 0;
 }
@@ -61,8 +58,12 @@ int read_file(vector<vector<string>> &ans_list){
         word_count++;
     }
     cin.clear();
-    freopen("CON", "r", stdin);
-
+    if(freopen("CON", "r", stdin)==nullptr){
+        fclose(stdin);
+        if(freopen("/dev/tty", "r", stdin) == nullptr){
+            cerr << "Error: unable to open console" << endl;
+        }
+    }
     return word_count;
 }
 
